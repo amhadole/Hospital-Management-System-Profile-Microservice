@@ -51,4 +51,10 @@ public class PatientController {
 		ApiResponse<PatientDto> response = new ApiResponse<PatientDto>(HttpStatus.OK.value(), "Updated Successfully", updatePatient, LocalDateTime.now());
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+	
+	public ResponseEntity<ApiResponse<Boolean>> patientExists(@PathVariable Long id)throws HmsException{
+		Boolean patientExists = patientService.patientExists(id);
+		ApiResponse<Boolean> response = new ApiResponse<Boolean>(HttpStatus.OK.value(), "Checked If Patient Exists", patientExists, LocalDateTime.now());
+		return new ResponseEntity<ApiResponse<Boolean>>(response, HttpStatus.OK);
+	}
 }
