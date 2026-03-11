@@ -52,6 +52,7 @@ public class PatientController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
+	@GetMapping(path = "/exists/{id}")
 	public ResponseEntity<ApiResponse<Boolean>> patientExists(@PathVariable Long id)throws HmsException{
 		Boolean patientExists = patientService.patientExists(id);
 		ApiResponse<Boolean> response = new ApiResponse<Boolean>(HttpStatus.OK.value(), "Checked If Patient Exists", patientExists, LocalDateTime.now());
