@@ -1,6 +1,7 @@
 package com.hms.profile.entity;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import com.hms.profile.dto.DoctorDto;
 
@@ -35,7 +36,13 @@ public class DoctorEntity {
 	private String department;
 	private Integer totalExp;
 	
+	private LocalTime workStart;
+	private LocalTime workEnd;
+	private LocalTime breakStrat;
+	private LocalTime breakEnd;
+	private Integer slotDuration;
+	
 	public DoctorDto toDto() {
-		return new DoctorDto(this.id, this.name, this.email, this.dob, this.phone, this.address, this.licenseNo, this.specialization, this.department, this.totalExp);
+		return new DoctorDto(this.id, this.name, this.email, this.dob, this.phone, this.address, this.licenseNo, this.specialization, this.department, this.totalExp, this.workStart, this.workEnd, this.breakStrat, this.breakEnd, this.slotDuration);
 	}
 }
