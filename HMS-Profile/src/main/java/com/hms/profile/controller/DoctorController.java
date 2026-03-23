@@ -1,6 +1,7 @@
 package com.hms.profile.controller;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hms.profile.dto.ApiResponse;
+import com.hms.profile.dto.DoctorDropdown;
 import com.hms.profile.dto.DoctorDto;
 import com.hms.profile.exception.HmsException;
 import com.hms.profile.service.DoctorService;
@@ -55,6 +57,13 @@ public class DoctorController {
 		Boolean doctorExists = doctorService.doctorExists(id);
 		ApiResponse<Boolean> response = new ApiResponse<Boolean>(HttpStatus.OK.value(), "Checked If Doctor Exists", doctorExists, LocalDateTime.now());
 		return new ResponseEntity<ApiResponse<Boolean>>(response, HttpStatus.OK);
+	}
+	
+	@GetMapping("/dropdown")
+	public ResponseEntity<ApiResponse<List<DoctorDropdown>>> getDoctorDeropdown() throws HmsException{
+		List<DoctorDropdown> doctorDropdown = doctorService.getDoctorDropdown();
+		ApiResponse<List<DoctorDropdown>> response = new ApiResponse<List<DoctorDropdown>>(HttpStatus.OK.value(), "Fetch Doctors", doctorDropdown, LocalDateTime.now());
+		return new ResponseEntity<ApiResponse<List<DoctorDropdown>>>(response, HttpStatus.OK);
 	}
 
 }
