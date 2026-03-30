@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hms.profile.dto.ApiResponse;
@@ -65,5 +66,12 @@ public class DoctorController {
 		ApiResponse<List<DoctorDropdown>> response = new ApiResponse<List<DoctorDropdown>>(HttpStatus.OK.value(), "Fetch Doctors", doctorDropdown, LocalDateTime.now());
 		return new ResponseEntity<ApiResponse<List<DoctorDropdown>>>(response, HttpStatus.OK);
 	}
-
+	
+	@GetMapping("/getDoctorsById")
+	public ResponseEntity<ApiResponse<List<DoctorDropdown>>> getDoctorsById(@RequestParam List<Long> id)throws HmsException{
+		List<DoctorDropdown> doctorDropdown = doctorService.getDoctorsById(id);
+		ApiResponse<List<DoctorDropdown>> response = new ApiResponse<List<DoctorDropdown>>(HttpStatus.OK.value(), "Fetch Doctor Name", doctorDropdown, LocalDateTime.now());
+		return new ResponseEntity<ApiResponse<List<DoctorDropdown>>>(response, HttpStatus.OK);
+		
+	}
 }

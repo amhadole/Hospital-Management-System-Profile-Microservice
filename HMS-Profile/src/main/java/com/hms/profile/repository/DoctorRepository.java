@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.hms.profile.dto.DoctorDropdown;
@@ -20,4 +21,7 @@ public interface DoctorRepository extends JpaRepository<DoctorEntity, Long>{
 	
 	@Query("Select d.id As id, d.name As name From DoctorEntity d")
 	List<DoctorDropdown> findAllDoctorDropdown();
+	
+	@Query("Select d.id As id, d.name As name From DoctorEntity d Where d.id in :id")
+	List<DoctorDropdown> findAllDoctorDropdownById(@Param("id")List<Long> id);
 }

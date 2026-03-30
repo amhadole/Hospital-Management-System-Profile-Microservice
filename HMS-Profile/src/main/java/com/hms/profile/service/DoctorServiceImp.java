@@ -51,4 +51,10 @@ public class DoctorServiceImp implements DoctorService {
 		return doctorRepository.findAllDoctorDropdown();
 	}
 
+	@Override
+	public List<DoctorDropdown> getDoctorsById(List<Long> id) throws HmsException {
+		
+		return doctorRepository.findAllDoctorDropdownById(id);
+	}
+
 }
